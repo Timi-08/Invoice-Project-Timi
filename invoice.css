@@ -584,9 +584,7 @@ h3 {
     margin-left: 20px;
     margin-right: 20px;
   }
-  .sidebar {
-    display: none;
-  }
+
   main {
     height: 100vh;
   }

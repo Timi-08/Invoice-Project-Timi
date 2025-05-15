@@ -12,6 +12,8 @@ let errorMsg = document.querySelector(".error-msg");
 let editModal = document.querySelector(".e-modal");
 let editExitBtn = document.querySelector(".e-exit");
 let editInvoiceForm = document.querySelector("#edit-invoiceForm");
+let removeItemBtn = document.querySelector("#removeItem");
+let markAsPaidBtn = document.querySelector(".markAsPaid");
 
 modal.style.display = "none";
 invoiceDetails.style.display = "none";
@@ -40,14 +42,33 @@ document.addEventListener("click", (e) => {
 
 addNewItem.addEventListener("click", () => {
   itemList.style.display = "grid";
+  addNewItem.style.color = "rgba(255, 255, 255, 0.19)";
+  addNewItem.style.pointerEvents = "none";
+  addNewItem.style.backgroundColor = "rgba(30, 33, 57, 0.39)";
 });
 
+removeItemBtn.addEventListener("click", () => {
+  const itemNameInput = document.querySelector("#itemName");
+  const itemQtyInput = document.querySelector("#itemQty");
+  const itemPriceInput = document.querySelector("#itemPrice");
+  const itemTotalInput = document.querySelector("#itemTotal");
+
+  itemNameInput.value = "";
+  itemQtyInput.value = "";
+  itemPriceInput.value = "";
+  itemTotalInput.value = "";
+
+  itemList.style.display = "none";
+  addNewItem.style.color = "rgb(255, 255, 255)";
+  addNewItem.style.pointerEvents = "all";
+  addNewItem.style.backgroundColor = "rgb(30, 33, 57)";
+});
 invoiceListContainer.addEventListener("click", (e) => {
   const invoiceElement = e.target.closest(".invoices");
   if (!invoiceElement) return;
 
-  const code = invoiceElement.querySelector(".code").textContent.trim();
-  const invoice = invoices.find((inv) => inv.code === code);
+  const code = invoiceElement.querySelector(".code").textContent;
+  const invoice = invoices.find((e) => e.code === code);
 
   if (invoice) {
     showInvoiceDetail(invoice);
@@ -184,6 +205,18 @@ const showInvoiceDetail = (invoice) => {
     </div>
   `;
 
+  const markAsPaidBtn = invoiceDetails.querySelector(".markAsPaid");
+  if (markAsPaidBtn) {
+    if (invoice.status === "Paid") {
+      markAsPaidBtn.style.backgroundColor = "rgba(124, 93, 250, 0.26)";
+      markAsPaidBtn.style.color = "rgba(255, 255, 255, 0.36)";
+      markAsPaidBtn.style.pointerEvents = "none";
+    } else {
+      markAsPaidBtn.addEventListener("click", () => {
+        markAsPaid(invoice.code);
+      });
+    }
+  }
   invoiceDetails.style.display = "flex";
   invoiceSection.style.display = "none";
 };
@@ -353,18 +386,12 @@ const markAsPaid = (code) => {
     invoiceSummary(invoices);
     numberOfInvoices(invoiceInfo);
     checkInvoices();
+    showInvoiceDetail(invoice);
 
     if (currentInvoiceCode === code) {
       showInvoiceDetail(invoice);
     }
   }
-};
-
-const filterInvoices = (status) => {
-  const filteredInvoices = invoices.filter(
-    (invoice) => invoice.status === status
-  );
-  invoiceSummary(filteredInvoices);
 };
 
 itemQtyInput.addEventListener("input", updateTotal);
