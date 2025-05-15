@@ -393,6 +393,21 @@ const markAsPaid = (code) => {
     }
   }
 };
+function updateResponsiveText() {
+  const filterSpan = document.querySelector(".filter span");
+  const newInvoiceBtn = document.querySelector(".new-invoice");
+  if (!filterSpan || !newInvoiceBtn) return;
+
+  if (window.innerWidth <= 580) {
+    filterSpan.innerText = "Filter";
+    newInvoiceBtn.innerText = "New +";
+  } else {
+    filterSpan.innerText = "Filter by status";
+    newInvoiceBtn.innerText = "New Invoice";
+  }
+}
+window.addEventListener("resize", updateResponsiveText);
+window.addEventListener("DOMContentLoaded", updateResponsiveText);
 
 itemQtyInput.addEventListener("input", updateTotal);
 itemPriceInput.addEventListener("input", updateTotal);

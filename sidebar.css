@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "League Spartan", sans-serif;
+}
+body {
+  background-color: rgb(20, 22, 37);
+}
+.sidebar-horizontal {
+  background-color: rgb(30, 33, 57);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+.user-horizontal {
+  display: flex;
+  align-items: center;
+
+  gap: 40px;
+}
+.logo-back {
+  background-color: rgb(124, 93, 250);
+  width: 150px;
+  height: 100px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.user-horizontal i {
+  font-size: 2rem;
+  color: rgb(126, 136, 195);
+  cursor: pointer;
+}
+hr {
+  height: 100px;
+  width: 1px;
+  background-color: rgb(126, 136, 195);
+  border: none;
+}
