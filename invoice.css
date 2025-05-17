@@ -253,8 +253,7 @@ input[type="checkbox"]:hover {
   justify-content: center;
   gap: 2rem;
   margin-top: 3rem;
-  /* position: absolute;
-  right: 4rem; */
+
   padding: 2rem;
   padding-top: 0;
 }
@@ -373,11 +372,14 @@ h3 {
   position: fixed;
   top: 0;
   left: 14.4rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-y: auto;
+
   padding-bottom: 2rem;
   margin-bottom: 3rem;
   margin-right: 3rem;
+}
+.invoice-sec-extra::-webkit-scrollbar {
+  display: none;
 }
 .blank {
   margin-bottom: 10rem;
@@ -709,7 +711,6 @@ h3 {
     padding: 4px 7px;
   }
 }
-/* 900px and below */
 @media (max-width: 900px) {
   .invoice-sec-extra {
     width: 100vw;
@@ -734,7 +735,7 @@ h3 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-/* 700px and below */
+
 @media (max-width: 700px) {
   .invoice-details {
     padding: 0.5rem;
@@ -756,7 +757,6 @@ h3 {
   }
 }
 
-/* 450px and below */
 @media (max-width: 450px) {
   .invoice-sec-extra {
     width: 100vw;
